@@ -18,12 +18,11 @@ from plotly import colors
 import pandas as pd
 
 from processing import analysis, io, util
-import settings 
-
 
 
 # Pass this around
-DF_SPLIT_INFO = io.load_df_split_info_clean(settings.CLEAN_RACE_DATA_DIR)
+RACE_YEAR = 2019
+DF_SPLIT_INFO = io.load_df_split_info_clean(RACE_YEAR)
 
 # colors.sequential.thermal
 COLOR_SCALE = colors.sequential.Turbo  # could I just put 'Turbo'?
@@ -368,14 +367,14 @@ def make_fig_subplots_frac(df_split_times):
 
 
 if __name__ == '__main__':
-  df_split_times = io.load_df_split_times_clean(settings.CLEAN_RACE_DATA_DIR)
+  df_split_times = io.load_df_split_times_clean(2019)
   # util.print_td(df_split_times)
 
   # print(io.load_df_split_secs_clean(settings.CLEAN_RACE_DATA_DIR))
 
   # all_athlete_split_times = util.load_athlete_split_times(include_start=True)
   # all_aid_station_info = util.load_station_info(include_start=True)
-  df_split_info = io.load_df_split_info_clean(settings.CLEAN_RACE_DATA_DIR)
+  df_split_info = io.load_df_split_info_clean(2019)
   # TODO: Include start time? See ahead.
   # print(df_split_info)
 

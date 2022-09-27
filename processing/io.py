@@ -31,7 +31,7 @@ def get_raw_race_data_dir(race_year):
   return os.path.join(get_race_data_dir(race_year), 'raw')
 
 
-def get_raw_race_data_dir(race_year):
+def get_clean_race_data_dir(race_year):
   return os.path.join(get_race_data_dir(race_year), 'clean')
 
 
@@ -72,7 +72,8 @@ def load_df_split_info_raw(race_year):
   # return pd.DataFrame.from_records(raw_json['split_info'])
 
 
-def load_df_split_info_clean(data_dir):
+def load_df_split_info_clean(race_year):
+  data_dir = get_clean_race_data_dir(race_year)
   return pd.read_csv(os.path.join(data_dir, SPLIT_INFO_FNAME), index_col=INDEX_NAME)
 
 
