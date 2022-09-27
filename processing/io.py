@@ -6,7 +6,6 @@ import pandas as pd
 
 from processing import cleaners
 from processing.util import td_to_secs
-import settings
 
 
 DATA_DIR = os.path.join(os.path.dirname(os.path.realpath(__file__)), os.pardir, 'data')
@@ -36,7 +35,6 @@ def get_raw_race_data_dir(race_year):
   return os.path.join(get_race_data_dir(race_year), 'clean')
 
 
-# def load_df_split_info_raw(data_dir):
 def load_df_split_info_raw(race_year):
   """Assumes we're working with single json object.
 
@@ -75,7 +73,7 @@ def load_df_split_info_raw(race_year):
 
 
 def load_df_split_info_clean(data_dir):
-  return pd.read_csv(os.path.join(data_dir, settings.SPLIT_INFO_FNAME), index_col=settings.INDEX_NAME)
+  return pd.read_csv(os.path.join(data_dir, SPLIT_INFO_FNAME), index_col=INDEX_NAME)
 
 
 def load_df_split_ms_jl_raw(data_dir):
@@ -172,8 +170,8 @@ def load_df_split_times_raw(race_year):
 
 def load_df_split_secs_clean(data_dir):
   return pd.read_csv(
-    os.path.join(data_dir, settings.SPLIT_SECS_FNAME),
-    index_col=settings.INDEX_NAME
+    os.path.join(data_dir, SPLIT_SECS_FNAME),
+    index_col=INDEX_NAME
   ).astype('Int64')
 
 
@@ -218,6 +216,6 @@ def df_td_to_csv(df, fname):
 
 
 def load_df_td_from_csv(fname):
-  return pd.read_csv(fname, index_col=settings.INDEX_NAME
+  return pd.read_csv(fname, index_col=INDEX_NAME
     ).astype('Int64'
     ).apply(pd.to_timedelta, axis=0, unit='s')
