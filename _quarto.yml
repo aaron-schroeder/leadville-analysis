@@ -1,2 +1,26 @@
 project:
+  type: website
+  render:
+    - index.qmd
+    - 2019.ipynb
   output-dir: html
+
+website:
+  title: 'Leadville Results Analysis'
+  navbar:
+    background: primary
+    left:
+      - href: index.qmd
+        text: Home
+      - 2019.ipynb
+
+format:
+  html:
+    # theme: solarized
+    theme: pulse
+    # theme: journal
+    # theme: minty
+    # theme: litera
+    # theme: cyborg
+    # css: styles.css
+    toc: true

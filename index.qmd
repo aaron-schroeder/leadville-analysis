@@ -1,0 +1,10 @@
+---
+title: 'Leadville Results Analysis'
+---
+A series of blog posts detailing how I scraped, cleaned, and analyzed
+race data from the [Leadville Trail 100 Run](https://www.leadvilleraceseries.com/run/leadvilletrail100run/).
+
+This site was generated with [Jupyter Notebook](https://jupyter-notebook.readthedocs.io/en/latest/) 
+and [Quarto](https://quarto.org/). 
+The source code that generated it can be found in 
+[one of my github repos](https://github.com/aaron-schroeder/leadville-analysis).
