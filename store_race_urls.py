@@ -1,4 +1,5 @@
 import json
+import os
 
 
 dict_race_urls = {
@@ -7,5 +8,9 @@ dict_race_urls = {
   2022: 'https://www.athlinks.com/event/33913/results/Event/1018673/Course/2248652'
 }
 
-with open('data/race_urls.json', 'w') as f:
+dir_out = './data'
+if not os.path.exists(dir_out):
+  os.makedirs(dir_out)
+
+with open(os.path.join(dir_out, 'race_urls.json'), 'w') as f:
   json.dump(dict_race_urls, f)
