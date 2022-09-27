@@ -1,0 +1,6 @@
+pandas==1.4.4
+# numpy==1.23.3
+plotly==5.10.0
+scrapy-athlinks==0.0.1
+# Scrapy==2.6.2
+notebook==6.4.12  # jupyter
