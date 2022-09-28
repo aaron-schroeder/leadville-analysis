@@ -7,7 +7,6 @@ https://github.com/scrapy/scrapy/blob/2.6.2/scrapy/cmdline.py#L118
 import getopt
 import sys
 
-
 from processing.scrapers import LeadvilleScraper
 
 
@@ -41,7 +40,7 @@ def execute(argv=None):
       print(arg_help)
       sys.exit(0)  # because it worked as expected
     elif opt in ('-y', '--year'):
-      LeadvilleScraper(int(arg)).run_spider()
+      LeadvilleScraper(int(arg)).run_spider_pandas()
     
 
 if __name__ == "__main__":
