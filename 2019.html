@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Leadville Results Analysis - 2019 Race Analysis</title>
+<title>Leadville Results Analysis - 2019 Split Data Cleanup</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -129,7 +129,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -144,38 +144,92 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="./index.html">Home</a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link active" href="./2019.html" aria-current="page">2019 Race Analysis</a>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/aaron-schroeder/leadville-analysis"><i class="bi bi-github" role="img" aria-label="Repo on GitHub">
+</i> 
+ </a>
   </li>  
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">2019 Split Data Cleanup</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">Scraping</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./scraping.html" class="sidebar-item-text sidebar-link">Running the spider</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Data Cleansing</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2019.html" class="sidebar-item-text sidebar-link active">2019 Split Data Cleanup</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2021.html" class="sidebar-item-text sidebar-link">2021 Split Data Cleanup</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2022.html" class="sidebar-item-text sidebar-link">2022 Split Data Cleanup</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#load-process-and-clean-split-info-scraped-by-the-spider." id="toc-load-process-and-clean-split-info-scraped-by-the-spider." class="nav-link active" data-scroll-target="#load-process-and-clean-split-info-scraped-by-the-spider.">Load, process, and clean split info scraped by the spider.</a>
+  <li><a href="#split-metadata" id="toc-split-metadata" class="nav-link active" data-scroll-target="#split-metadata">Split metadata</a>
   <ul class="collapse">
-  <li><a href="#load-the-data-as-scraped-by-the-spider-into-a-pandas-dataframe." id="toc-load-the-data-as-scraped-by-the-spider-into-a-pandas-dataframe." class="nav-link" data-scroll-target="#load-the-data-as-scraped-by-the-spider-into-a-pandas-dataframe.">Load the data (as scraped by the spider) into a pandas DataFrame.</a></li>
-  <li><a href="#apply-some-leadville-specific-processing-to-the-split-info" id="toc-apply-some-leadville-specific-processing-to-the-split-info" class="nav-link" data-scroll-target="#apply-some-leadville-specific-processing-to-the-split-info">Apply some Leadville-specific processing to the split info</a></li>
-  <li><a href="#optional-write-cleaned-split-info-to-file" id="toc-optional-write-cleaned-split-info-to-file" class="nav-link" data-scroll-target="#optional-write-cleaned-split-info-to-file">(Optional) write cleaned split info to file</a></li>
+  <li><a href="#load-raw-metadata" id="toc-load-raw-metadata" class="nav-link" data-scroll-target="#load-raw-metadata">Load raw metadata</a></li>
+  <li><a href="#cleanse-the-metadata" id="toc-cleanse-the-metadata" class="nav-link" data-scroll-target="#cleanse-the-metadata">Cleanse the metadata</a></li>
+  <li><a href="#save-cleaned-metadata" id="toc-save-cleaned-metadata" class="nav-link" data-scroll-target="#save-cleaned-metadata">Save cleaned metadata</a></li>
   </ul></li>
-  <li><a href="#load-process-and-clean-the-athlete-split-data-scraped-by-the-spider" id="toc-load-process-and-clean-the-athlete-split-data-scraped-by-the-spider" class="nav-link" data-scroll-target="#load-process-and-clean-the-athlete-split-data-scraped-by-the-spider">Load, process, and clean the athlete split data scraped by the spider</a>
+  <li><a href="#athlete-split-data" id="toc-athlete-split-data" class="nav-link" data-scroll-target="#athlete-split-data">Athlete split data</a>
   <ul class="collapse">
-  <li><a href="#remove-wonky-runner-data-as-determined-by-manual-inspection." id="toc-remove-wonky-runner-data-as-determined-by-manual-inspection." class="nav-link" data-scroll-target="#remove-wonky-runner-data-as-determined-by-manual-inspection.">Remove wonky runner data, as determined by manual inspection.</a></li>
-  <li><a href="#optional-save-inferences-for-future-use" id="toc-optional-save-inferences-for-future-use" class="nav-link" data-scroll-target="#optional-save-inferences-for-future-use">(Optional) save inferences for future use</a></li>
+  <li><a href="#load-data" id="toc-load-data" class="nav-link" data-scroll-target="#load-data">Load data</a></li>
+  <li><a href="#cleanse-data" id="toc-cleanse-data" class="nav-link" data-scroll-target="#cleanse-data">Cleanse data</a></li>
+  <li><a href="#save-the-cleaned-data" id="toc-save-the-cleaned-data" class="nav-link" data-scroll-target="#save-the-cleaned-data">Save the cleaned data</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -185,7 +239,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">2019 Race Analysis</h1>
+<h1 class="title d-none d-lg-block">2019 Split Data Cleanup</h1>
 </div>
 
 
@@ -199,38 +253,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<p>First, let’s import the packages that will be used throughout this analysis.</p>
-<div class="cell" data-execution_count="1">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> processing <span class="im">import</span> cleaners, io, util</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>RACE_YEAR <span class="op">=</span> <span class="dv">2019</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<p>Then change a setting so we can see the results of variable assignments.</p>
-<div class="cell" data-execution_count="2">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.core.interactiveshell <span class="im">import</span> InteractiveShell</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>InteractiveShell.ast_node_interactivity <span class="op">=</span> <span class="st">'last_expr_or_assign'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
 <p>This notebook assumes we have already run a scrapy spider to collect race data like so:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> processing.scrapers <span class="im">import</span> scrape_for_pandas</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>scrape_for_pandas(RACE_YEAR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="load-process-and-clean-split-info-scraped-by-the-spider." class="level2">
-<h2 class="anchored" data-anchor-id="load-process-and-clean-split-info-scraped-by-the-spider.">Load, process, and clean split info scraped by the spider.</h2>
-<section id="load-the-data-as-scraped-by-the-spider-into-a-pandas-dataframe." class="level3">
-<h3 class="anchored" data-anchor-id="load-the-data-as-scraped-by-the-spider-into-a-pandas-dataframe.">Load the data (as scraped by the spider) into a pandas DataFrame.</h3>
-<div class="cell" data-execution_count="3">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df_split_info_raw <span class="op">=</span> io.load_df_split_info_raw(RACE_YEAR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> processing.scrapers <span class="im">import</span> LeadvilleScraper</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>LeadvilleScraper(<span class="dv">2019</span>).run_spider_pandas()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>First, let’s import the packages and define the variables that will be used throughout the data cleansing process.</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> processing <span class="im">import</span> cleaners, io, util</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>RACE_YEAR <span class="op">=</span> <span class="dv">2019</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="split-metadata" class="level2">
+<h2 class="anchored" data-anchor-id="split-metadata">Split metadata</h2>
+<p>Before looking at the athlete splits, we must load, process, and clean the metadata about the splits themselves.</p>
+<section id="load-raw-metadata" class="level3">
+<h3 class="anchored" data-anchor-id="load-raw-metadata">Load raw metadata</h3>
+<p>Load the split info (as scraped by the spider) into a <code>pandas.DataFrame</code>.</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df_split_info_raw <span class="op">=</span> io.load_df_split_info_raw(RACE_YEAR)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>df_split_info_raw</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
 
 <div>
 
@@ -303,16 +347,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="4">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df_split_info <span class="op">=</span> cleaners.process_df_split_info(df_split_info_raw)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Debug</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># df_split_info</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># df_splits.dtypes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="4">
+</section>
+<section id="cleanse-the-metadata" class="level3">
+<h3 class="anchored" data-anchor-id="cleanse-the-metadata">Cleanse the metadata</h3>
+<p>First, sort the split info by ascending distance and add a column with mileage units:</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df_split_info <span class="op">=</span> cleaners.process_df_split_info(df_split_info_raw)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>df_split_info</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
 
 <div>
 
@@ -400,32 +443,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-</section>
-<section id="apply-some-leadville-specific-processing-to-the-split-info" class="level3">
-<h3 class="anchored" data-anchor-id="apply-some-leadville-specific-processing-to-the-split-info">Apply some Leadville-specific processing to the split info</h3>
-<div class="cell" data-execution_count="5">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (present in 2021, gone in 2022, and never very useful)</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df_split_info.drop(index<span class="op">=</span><span class="st">'Kick to Finish 0.8 Miles Left'</span>, errors<span class="op">=</span><span class="st">'ignore'</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract each aid station name from its 'label' string.</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: This isn't really necessary, just aesthetic. Move to plotting script?</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>df_split_info[<span class="st">'name'</span>] <span class="op">=</span> df_split_info.index.to_series(</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  ).<span class="bu">str</span>.extract(<span class="vs">r'Start to (.+)'</span>, expand<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># If the split name doesn't match the regex, just use as-is.</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  ).fillna(df_split_info.index.to_series())</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Manually add cutoff info (found elsewhere on the web)</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>df_split_info[<span class="st">'cutoff_hr'</span>] <span class="op">=</span> [<span class="fl">3.75</span>, <span class="fl">6.</span>, <span class="fl">7.5</span>, <span class="fl">9.5</span>, <span class="fl">12.</span>, <span class="fl">14.</span>, <span class="va">None</span>, <span class="fl">18.</span>, <span class="fl">21.25</span>, <span class="fl">23.</span>, <span class="fl">26.5</span>, <span class="fl">30.</span>]</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>df_split_info</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Debug</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co"># df_splits.dtypes</span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co"># type(df_splits['cutoff_hr'].iloc[6])  # np.float64</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<p>Then, apply some Leadville-specific processing to the split info:</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (present in 2021, gone in 2022, and never very useful)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df_split_info.drop(index<span class="op">=</span><span class="st">'Kick to Finish 0.8 Miles Left'</span>, errors<span class="op">=</span><span class="st">'ignore'</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Manually add cutoff info (found elsewhere on the web)</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>df_split_info[<span class="st">'cutoff_hr'</span>] <span class="op">=</span> [<span class="fl">3.75</span>, <span class="fl">6.</span>, <span class="fl">7.5</span>, <span class="fl">9.5</span>, <span class="fl">12.</span>, <span class="fl">14.</span>, <span class="va">None</span>, <span class="fl">18.</span>, <span class="fl">21.25</span>, <span class="fl">23.</span>, <span class="fl">26.5</span>, <span class="fl">30.</span>]</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>df_split_info</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
 
 <div>
 
@@ -435,12 +462,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <th></th>
       <th>distance_m</th>
       <th>distance_mi</th>
-      <th>name</th>
       <th>cutoff_hr</th>
     </tr>
     <tr>
       <th>label</th>
-      <th></th>
       <th></th>
       <th></th>
       <th></th>
@@ -451,84 +476,72 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <th>12.6mi_Start to May Queen</th>
       <td>20278</td>
       <td>12.6</td>
-      <td>May Queen</td>
       <td>3.75</td>
     </tr>
     <tr>
       <th>23.5mi_Start to Outward Bound OUT</th>
       <td>37820</td>
       <td>23.5</td>
-      <td>Outward Bound OUT</td>
       <td>6.00</td>
     </tr>
     <tr>
       <th>29.3mi_Start to Half Pipe Out</th>
       <td>47154</td>
       <td>29.3</td>
-      <td>Half Pipe Out</td>
       <td>7.50</td>
     </tr>
     <tr>
       <th>37.9mi_Start to Twin Lakes Out</th>
       <td>60994</td>
       <td>37.9</td>
-      <td>Twin Lakes Out</td>
       <td>9.50</td>
     </tr>
     <tr>
       <th>43.5mi_Start to Hope Pass Out</th>
       <td>70006</td>
       <td>43.5</td>
-      <td>Hope Pass Out</td>
       <td>12.00</td>
     </tr>
     <tr>
       <th>50mi_Start to Winfield</th>
       <td>80467</td>
       <td>50.0</td>
-      <td>Winfield</td>
       <td>14.00</td>
     </tr>
     <tr>
       <th>56.5mi_Start to Hope Pass In</th>
       <td>90928</td>
       <td>56.5</td>
-      <td>Hope Pass In</td>
       <td>NaN</td>
     </tr>
     <tr>
       <th>62.5mi_Start to Twin Lakes In</th>
       <td>100584</td>
       <td>62.5</td>
-      <td>Twin Lakes In</td>
       <td>18.00</td>
     </tr>
     <tr>
       <th>71.1mi_Start to Half Pipe In</th>
       <td>114424</td>
       <td>71.1</td>
-      <td>Half Pipe In</td>
       <td>21.25</td>
     </tr>
     <tr>
       <th>76.9mi_Start to Outward Bound In</th>
       <td>123759</td>
       <td>76.9</td>
-      <td>Outward Bound In</td>
       <td>23.00</td>
     </tr>
     <tr>
       <th>87.8mi_Start to May Queen In</th>
       <td>141300</td>
       <td>87.8</td>
-      <td>May Queen In</td>
       <td>26.50</td>
     </tr>
     <tr>
       <th>Full Course</th>
       <td>161578</td>
       <td>100.4</td>
-      <td>Full Course</td>
       <td>30.00</td>
     </tr>
   </tbody>
@@ -537,34 +550,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="optional-write-cleaned-split-info-to-file" class="level3">
-<h3 class="anchored" data-anchor-id="optional-write-cleaned-split-info-to-file">(Optional) write cleaned split info to file</h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: implement this</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># io.save_df_split_info(df_split_info, RACE_YEAR)</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># dir_out = settings.CLEAN_RACE_DATA_DIR</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>dir_out <span class="op">=</span> io.get_clean_race_data_dir(RACE_YEAR)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> os.path.exists(dir_out):</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  os.makedirs(dir_out)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># df_split_info.to_csv(os.path.join(dir_out, settings.SPLIT_INFO_FNAME),</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>df_split_info.to_csv(os.path.join(dir_out, io.SPLIT_INFO_FNAME),</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  columns<span class="op">=</span>[<span class="st">'name'</span>, <span class="st">'distance_mi'</span>, <span class="st">'cutoff_hr'</span>],</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  index<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="save-cleaned-metadata" class="level3">
+<h3 class="anchored" data-anchor-id="save-cleaned-metadata">Save cleaned metadata</h3>
+<p>Write the processed, cleaned split info DataFrame to a (<code>pandas</code>-preferred) CSV file for future use.</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>io.save_df_split_info_clean(df_split_info, RACE_YEAR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 </section>
-<section id="load-process-and-clean-the-athlete-split-data-scraped-by-the-spider" class="level2">
-<h2 class="anchored" data-anchor-id="load-process-and-clean-the-athlete-split-data-scraped-by-the-spider">Load, process, and clean the athlete split data scraped by the spider</h2>
-<p>The Athlinks spider saves split data for each athlete. Load all such split data from the spider-produced <code>json</code> file into a <code>pandas.DataFrame</code>.</p>
+<section id="athlete-split-data" class="level2">
+<h2 class="anchored" data-anchor-id="athlete-split-data">Athlete split data</h2>
+<p>The Athlinks spider saves split data for every athlete in one big <code>json</code> file. We will load it into a single data structure, process it into the desired formats and types, cleanse it by hunting for anomalous data, and finally save the cleansed data in a new file.</p>
+<section id="load-data" class="level3">
+<h3 class="anchored" data-anchor-id="load-data">Load data</h3>
+<p>Load all athlete split data from the spider-produced <code>json</code> file into a <code>pandas.DataFrame</code>:</p>
 <div class="cell" data-execution_count="6">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df_split_times_raw <span class="op">=</span> io.load_df_split_times_raw(RACE_YEAR)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>util.df_td_fmt(df_split_times_raw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df_split_times_raw <span class="op">=</span> io.load_df_split_times_raw(RACE_YEAR)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>util.df_td_fmt(df_split_times_raw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 
 <div>
@@ -573,341 +576,341 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <thead>
     <tr>
       <th></th>
-      <th>Jamie Kilcoyne</th>
-      <th>Mackenzie Mau</th>
-      <th>Lance Anderson</th>
-      <th>Jon Harrison</th>
-      <th>Pat Cade</th>
-      <th>Peter Mortimer</th>
-      <th>Wesley Sandoval</th>
       <th>Jacob Banta</th>
-      <th>Radu Milea</th>
-      <th>Matthew Harrison</th>
+      <th>Jeremy Bradford</th>
+      <th>steve slauson</th>
+      <th>Jeffrey Urbanski</th>
+      <th>Daniel Frank</th>
+      <th>Anton Samokhvalov</th>
+      <th>Clark Messman</th>
+      <th>RUBEN DELGADO GIL</th>
+      <th>Justin Ladner</th>
+      <th>Marvin Sandoval</th>
       <th>...</th>
-      <th>Matthew Urbanski</th>
       <th>Jock Green</th>
-      <th>Gabe Joyes</th>
-      <th>Ramon Casanovas</th>
-      <th>Gediminas Grinius</th>
       <th>Mark Marzen</th>
+      <th>Gediminas Grinius</th>
+      <th>Gabe Joyes</th>
       <th>Devon Olson</th>
       <th>Tate Knight</th>
-      <th>Chad Trammell</th>
+      <th>Jamie Kilcoyne</th>
       <th>Ryan Smith</th>
+      <th>Chad Trammell</th>
+      <th>Ramon Casanovas</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>Full Course</th>
-      <td>22:51:06</td>
-      <td>22:48:53</td>
-      <td>22:14:20</td>
-      <td>22:16:18</td>
-      <td>22:28:38</td>
-      <td>22:23:13</td>
-      <td>22:48:52</td>
       <td>22:13:02</td>
-      <td>21:28:03</td>
-      <td>22:32:07</td>
+      <td>22:10:51</td>
+      <td>21:35:52</td>
+      <td>21:12:28</td>
+      <td>21:58:23</td>
+      <td>22:01:29</td>
+      <td>21:15:31</td>
+      <td>21:00:20</td>
+      <td>21:04:42</td>
+      <td>21:06:58</td>
       <td>...</td>
-      <td>19:51:14</td>
       <td>19:33:10</td>
-      <td>19:37:23</td>
-      <td>18:14:51</td>
-      <td>19:22:13</td>
       <td>19:10:29</td>
+      <td>19:22:13</td>
+      <td>19:37:23</td>
       <td>17:57:17</td>
       <td>18:51:47</td>
-      <td>17:56:26</td>
+      <td>22:51:06</td>
       <td>16:33:24</td>
+      <td>17:56:26</td>
+      <td>18:14:51</td>
     </tr>
     <tr>
       <th>12.6mi_Start to May Queen</th>
-      <td>02:03:14</td>
-      <td>01:58:46</td>
-      <td>02:06:46</td>
-      <td>02:07:45</td>
-      <td>01:48:55</td>
-      <td>01:53:43</td>
-      <td>01:55:02</td>
       <td>01:57:22</td>
-      <td>01:50:09</td>
-      <td>01:50:02</td>
+      <td>02:13:47</td>
+      <td>01:43:05</td>
+      <td>01:54:28</td>
+      <td>01:57:18</td>
+      <td>01:42:57</td>
+      <td>01:50:40</td>
+      <td>01:43:14</td>
+      <td>01:42:33</td>
+      <td>01:53:39</td>
       <td>...</td>
-      <td>01:48:51</td>
       <td>01:50:22</td>
-      <td>01:46:31</td>
-      <td>&lt;NA&gt;</td>
-      <td>01:39:27</td>
       <td>01:40:13</td>
+      <td>01:39:27</td>
+      <td>01:46:31</td>
       <td>01:36:25</td>
       <td>01:44:27</td>
-      <td>01:37:00</td>
+      <td>02:03:14</td>
       <td>01:36:52</td>
+      <td>01:37:00</td>
+      <td>&lt;NA&gt;</td>
     </tr>
     <tr>
       <th>23.5mi_Start to Outward Bound OUT</th>
-      <td>04:09:13</td>
-      <td>03:59:00</td>
-      <td>04:12:06</td>
-      <td>04:00:12</td>
-      <td>03:32:38</td>
-      <td>03:47:51</td>
-      <td>03:50:02</td>
       <td>03:49:11</td>
-      <td>03:40:46</td>
-      <td>03:44:54</td>
+      <td>04:16:42</td>
+      <td>03:31:29</td>
+      <td>03:45:52</td>
+      <td>03:47:47</td>
+      <td>03:25:59</td>
+      <td>03:38:10</td>
+      <td>03:29:35</td>
+      <td>03:26:33</td>
+      <td>03:53:40</td>
       <td>...</td>
-      <td>03:39:07</td>
       <td>03:38:14</td>
-      <td>03:25:15</td>
-      <td>03:17:28</td>
-      <td>03:24:31</td>
       <td>03:22:00</td>
+      <td>03:24:31</td>
+      <td>03:25:15</td>
       <td>03:12:37</td>
       <td>03:27:26</td>
-      <td>03:08:39</td>
+      <td>04:09:13</td>
       <td>03:10:01</td>
+      <td>03:08:39</td>
+      <td>03:17:28</td>
     </tr>
     <tr>
       <th>29.3mi_Start to Half Pipe Out</th>
-      <td>05:10:14</td>
-      <td>04:58:07</td>
-      <td>05:15:50</td>
-      <td>04:58:15</td>
-      <td>04:23:06</td>
-      <td>04:45:56</td>
-      <td>04:51:04</td>
       <td>04:50:46</td>
-      <td>04:34:48</td>
-      <td>04:38:07</td>
+      <td>05:19:26</td>
+      <td>04:27:23</td>
+      <td>04:39:39</td>
+      <td>04:42:29</td>
+      <td>04:17:12</td>
+      <td>04:29:34</td>
+      <td>04:21:32</td>
+      <td>04:17:33</td>
+      <td>04:57:14</td>
       <td>...</td>
-      <td>04:33:12</td>
       <td>04:34:49</td>
-      <td>04:17:45</td>
-      <td>04:07:37</td>
-      <td>04:15:00</td>
       <td>04:15:25</td>
+      <td>04:15:00</td>
+      <td>04:17:45</td>
       <td>03:59:01</td>
       <td>04:15:08</td>
-      <td>03:56:16</td>
+      <td>05:10:14</td>
       <td>03:56:17</td>
+      <td>03:56:16</td>
+      <td>04:07:37</td>
     </tr>
     <tr>
       <th>37.9mi_Start to Twin Lakes Out</th>
-      <td>06:53:30</td>
-      <td>06:39:34</td>
-      <td>06:57:08</td>
-      <td>06:42:05</td>
-      <td>05:45:57</td>
-      <td>06:23:12</td>
-      <td>06:25:23</td>
       <td>06:30:59</td>
-      <td>06:11:01</td>
-      <td>06:06:46</td>
+      <td>06:58:14</td>
+      <td>06:01:49</td>
+      <td>06:10:57</td>
+      <td>06:16:30</td>
+      <td>05:59:39</td>
+      <td>05:54:20</td>
+      <td>05:53:35</td>
+      <td>05:42:44</td>
+      <td>06:34:37</td>
       <td>...</td>
-      <td>06:06:26</td>
       <td>06:07:03</td>
-      <td>05:57:26</td>
-      <td>05:37:23</td>
-      <td>05:42:35</td>
       <td>05:41:39</td>
+      <td>05:42:35</td>
+      <td>05:57:26</td>
       <td>05:18:26</td>
       <td>05:36:24</td>
-      <td>05:13:27</td>
+      <td>06:53:30</td>
       <td>05:14:23</td>
+      <td>05:13:27</td>
+      <td>05:37:23</td>
     </tr>
     <tr>
       <th>43.5mi_Start to Hope Pass Out</th>
-      <td>08:53:31</td>
-      <td>08:45:28</td>
-      <td>08:59:45</td>
-      <td>08:47:10</td>
-      <td>07:31:50</td>
-      <td>08:22:48</td>
-      <td>08:19:23</td>
       <td>08:23:18</td>
-      <td>07:59:41</td>
-      <td>07:57:21</td>
+      <td>08:53:07</td>
+      <td>08:00:12</td>
+      <td>08:00:26</td>
+      <td>08:17:31</td>
+      <td>07:58:18</td>
+      <td>07:49:04</td>
+      <td>07:49:31</td>
+      <td>07:33:02</td>
+      <td>08:30:20</td>
       <td>...</td>
-      <td>07:46:51</td>
       <td>07:52:38</td>
-      <td>07:38:26</td>
-      <td>07:14:04</td>
-      <td>07:30:55</td>
       <td>07:33:21</td>
+      <td>07:30:55</td>
+      <td>07:38:26</td>
       <td>07:00:41</td>
       <td>07:10:54</td>
-      <td>06:42:38</td>
+      <td>08:53:31</td>
       <td>06:46:09</td>
+      <td>06:42:38</td>
+      <td>07:14:04</td>
     </tr>
     <tr>
       <th>50mi_Start to Winfield</th>
-      <td>10:16:36</td>
-      <td>10:05:29</td>
-      <td>10:17:04</td>
-      <td>10:12:04</td>
-      <td>08:42:46</td>
-      <td>09:34:24</td>
-      <td>09:32:06</td>
       <td>09:50:52</td>
-      <td>09:15:27</td>
-      <td>09:17:10</td>
+      <td>10:07:13</td>
+      <td>09:18:50</td>
+      <td>09:19:39</td>
+      <td>09:36:05</td>
+      <td>09:08:37</td>
+      <td>09:10:43</td>
+      <td>09:04:26</td>
+      <td>08:50:00</td>
+      <td>09:45:56</td>
       <td>...</td>
-      <td>08:56:37</td>
       <td>09:04:44</td>
-      <td>08:42:49</td>
-      <td>08:18:15</td>
-      <td>08:40:04</td>
       <td>08:38:57</td>
+      <td>08:40:04</td>
+      <td>08:42:49</td>
       <td>08:04:28</td>
       <td>08:16:57</td>
-      <td>07:44:21</td>
+      <td>10:16:36</td>
       <td>07:47:15</td>
+      <td>07:44:21</td>
+      <td>08:18:15</td>
     </tr>
     <tr>
       <th>56.5mi_Start to Hope Pass In</th>
-      <td>12:19:55</td>
-      <td>12:09:46</td>
-      <td>12:24:52</td>
-      <td>12:19:28</td>
-      <td>10:41:04</td>
-      <td>11:43:49</td>
-      <td>11:15:48</td>
       <td>11:55:39</td>
-      <td>11:09:56</td>
-      <td>11:28:53</td>
+      <td>12:06:26</td>
+      <td>11:14:42</td>
+      <td>11:21:07</td>
+      <td>11:41:16</td>
+      <td>11:20:27</td>
+      <td>11:28:39</td>
+      <td>11:09:08</td>
+      <td>10:48:53</td>
+      <td>11:32:39</td>
       <td>...</td>
-      <td>11:00:14</td>
       <td>10:46:44</td>
-      <td>10:27:19</td>
-      <td>09:56:02</td>
-      <td>10:35:46</td>
       <td>10:36:10</td>
+      <td>10:35:46</td>
+      <td>10:27:19</td>
       <td>09:55:50</td>
       <td>10:04:32</td>
-      <td>09:35:10</td>
+      <td>12:19:55</td>
       <td>09:22:44</td>
+      <td>09:35:10</td>
+      <td>09:56:02</td>
     </tr>
     <tr>
       <th>62.5mi_Start to Twin Lakes In</th>
-      <td>13:42:11</td>
-      <td>13:32:54</td>
-      <td>13:46:41</td>
-      <td>13:45:52</td>
-      <td>11:57:27</td>
-      <td>12:54:45</td>
-      <td>12:24:14</td>
       <td>13:38:10</td>
-      <td>12:32:04</td>
-      <td>12:51:32</td>
+      <td>13:25:09</td>
+      <td>12:27:58</td>
+      <td>12:46:14</td>
+      <td>12:57:45</td>
+      <td>12:34:52</td>
+      <td>13:04:04</td>
+      <td>12:27:43</td>
+      <td>12:11:28</td>
+      <td>12:46:23</td>
       <td>...</td>
-      <td>12:14:13</td>
       <td>11:50:38</td>
-      <td>11:39:48</td>
-      <td>11:02:04</td>
-      <td>11:40:18</td>
       <td>11:33:27</td>
+      <td>11:40:18</td>
+      <td>11:39:48</td>
       <td>11:00:26</td>
       <td>11:08:58</td>
-      <td>10:37:24</td>
+      <td>13:42:11</td>
       <td>10:17:55</td>
+      <td>10:37:24</td>
+      <td>11:02:04</td>
     </tr>
     <tr>
       <th>71.1mi_Start to Half Pipe In</th>
-      <td>15:38:09</td>
-      <td>15:25:26</td>
-      <td>15:41:10</td>
-      <td>15:40:52</td>
-      <td>13:47:17</td>
-      <td>15:00:09</td>
-      <td>14:16:51</td>
       <td>15:33:27</td>
-      <td>14:21:35</td>
-      <td>14:45:18</td>
+      <td>15:15:33</td>
+      <td>14:27:36</td>
+      <td>14:39:38</td>
+      <td>14:49:31</td>
+      <td>14:22:52</td>
+      <td>14:40:29</td>
+      <td>14:16:41</td>
+      <td>14:01:03</td>
+      <td>14:36:59</td>
       <td>...</td>
-      <td>13:54:21</td>
       <td>13:31:37</td>
-      <td>13:21:05</td>
-      <td>12:42:01</td>
-      <td>13:23:23</td>
       <td>13:13:09</td>
+      <td>13:23:23</td>
+      <td>13:21:05</td>
       <td>12:35:46</td>
       <td>12:49:03</td>
-      <td>12:13:37</td>
+      <td>15:38:09</td>
       <td>11:49:43</td>
+      <td>12:13:37</td>
+      <td>12:42:01</td>
     </tr>
     <tr>
       <th>76.9mi_Start to Outward Bound In</th>
-      <td>16:55:00</td>
-      <td>16:38:14</td>
-      <td>16:54:12</td>
-      <td>16:55:45</td>
-      <td>14:47:26</td>
-      <td>16:08:13</td>
-      <td>15:32:31</td>
       <td>16:44:11</td>
-      <td>15:23:36</td>
-      <td>15:52:38</td>
+      <td>16:24:21</td>
+      <td>15:37:04</td>
+      <td>15:41:49</td>
+      <td>16:08:01</td>
+      <td>15:27:19</td>
+      <td>15:34:29</td>
+      <td>15:21:46</td>
+      <td>15:00:46</td>
+      <td>15:38:33</td>
       <td>...</td>
-      <td>14:49:57</td>
       <td>14:31:31</td>
-      <td>14:20:02</td>
-      <td>13:37:29</td>
-      <td>14:21:27</td>
       <td>14:10:38</td>
+      <td>14:21:27</td>
+      <td>14:20:02</td>
       <td>13:28:38</td>
       <td>13:53:21</td>
-      <td>13:13:39</td>
+      <td>16:55:00</td>
       <td>12:41:41</td>
+      <td>13:13:39</td>
+      <td>13:37:29</td>
     </tr>
     <tr>
       <th>87.8mi_Start to May Queen In</th>
-      <td>20:03:16</td>
-      <td>19:34:11</td>
-      <td>19:30:40</td>
-      <td>19:38:18</td>
-      <td>18:00:35</td>
-      <td>19:12:22</td>
-      <td>19:25:31</td>
       <td>19:27:09</td>
-      <td>18:13:17</td>
-      <td>19:25:52</td>
+      <td>19:14:35</td>
+      <td>18:34:41</td>
+      <td>18:35:29</td>
+      <td>18:43:19</td>
+      <td>18:46:11</td>
+      <td>18:08:44</td>
+      <td>18:04:01</td>
+      <td>18:13:27</td>
+      <td>18:17:18</td>
       <td>...</td>
-      <td>17:14:22</td>
       <td>16:48:51</td>
-      <td>16:51:47</td>
-      <td>15:50:48</td>
-      <td>16:47:04</td>
       <td>16:41:28</td>
+      <td>16:47:04</td>
+      <td>16:51:47</td>
       <td>15:44:05</td>
       <td>16:19:55</td>
-      <td>15:24:18</td>
+      <td>20:03:16</td>
       <td>14:39:35</td>
+      <td>15:24:18</td>
+      <td>15:50:48</td>
     </tr>
     <tr>
       <th>Kick to Finish 0.8 Miles Left</th>
-      <td>22:38:57</td>
-      <td>22:34:26</td>
-      <td>22:02:58</td>
-      <td>22:05:14</td>
-      <td>22:15:31</td>
-      <td>22:09:54</td>
-      <td>22:34:11</td>
       <td>22:01:35</td>
-      <td>21:13:24</td>
-      <td>22:21:29</td>
+      <td>21:58:31</td>
+      <td>21:21:38</td>
+      <td>21:03:10</td>
+      <td>21:46:06</td>
+      <td>21:49:59</td>
+      <td>21:05:13</td>
+      <td>20:47:21</td>
+      <td>20:54:53</td>
+      <td>20:54:19</td>
       <td>...</td>
-      <td>19:40:37</td>
       <td>19:20:19</td>
-      <td>19:25:26</td>
-      <td>18:03:19</td>
-      <td>19:09:54</td>
       <td>18:58:59</td>
+      <td>19:09:54</td>
+      <td>19:25:26</td>
       <td>17:48:11</td>
       <td>18:41:04</td>
-      <td>17:45:49</td>
+      <td>22:38:57</td>
       <td>16:24:04</td>
+      <td>17:45:49</td>
+      <td>18:03:19</td>
     </tr>
   </tbody>
 </table>
@@ -915,24 +918,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<p>Notice that the columns (athletes) are presented in the order the Athlinks website spider returned them. This isn’t particularly useful for spotting outliers or unreasonable performances. It would be easier to spot bad data if athletes with similar performances were grouped together. To fix this, we can group the athletes based on the furthest split they each recorded, then sort athletes within each group by their split times.</p>
+</section>
+<section id="cleanse-data" class="level3">
+<h3 class="anchored" data-anchor-id="cleanse-data">Cleanse data</h3>
+<p>We can inspect the whole DataFrame for abnormalities. We are mostly looking for anomalous finish line splits when a runner DNFs and returns to Leadville, but there are occasional split misfires mid-race too.</p>
+<p>Notice that in the DataFrame above, the columns (athletes) are presented in the order chosen by the Athlinks website spider. This isn’t particularly useful for spotting outliers or unreasonable performances. It would be easier to spot bad data if athletes with similar performances were grouped together.</p>
+<p>To fix this, we can group the athletes based on the furthest split they each recorded, then sort athletes within each group by their split times:</p>
 <div class="cell" data-execution_count="7">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the split info that's been processed and cleaned</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: no need to reload, I created it above.</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># df_split_info = io.load_df_split_info_clean(settings.CLEAN_RACE_DATA_DIR)</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># print(df_split_info_clean)</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># df_split_times = util.load_athlete_split_times(clean=False)</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># df_split_times = cleaners.sort_df_split_data(</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#   io.load_df_split_times_raw(settings.RAW_RACE_DATA_DIR),</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#   df_split_info_clean)</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>df_split_times <span class="op">=</span> cleaners.sort_df_split_data(df_split_times_raw, df_split_info)</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>util.display_full_df(util.df_td_fmt(df_split_times))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df_split_times <span class="op">=</span> cleaners.sort_df_split_data(df_split_times_raw, df_split_info)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>util.display_full_df(util.df_td_fmt(df_split_times))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <div>
@@ -12622,32 +12617,131 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
+<section id="optional-print-entire-splits-dataframe-to-a-file" class="level4">
+<h4 class="anchored" data-anchor-id="optional-print-entire-splits-dataframe-to-a-file">Optional: Print entire splits DataFrame to a file</h4>
+<p>If desired, we can save this file and scroll through it in our preferred text editor. Some notes:</p>
+<ul>
+<li>VSCode (Windows): alt+z to disable wrap.</li>
+<li>VSCode will not display files in excess of 10k characters in width. Sublime text can do it.</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>util.full_df_to_file(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  util.df_td_fmt(df_split_times),</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  os.path.join(io.get_raw_race_data_dir(RACE_YEAR), <span class="st">'df_all.txt'</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="remove-bad-data" class="level4">
+<h4 class="anchored" data-anchor-id="remove-bad-data">Remove bad data</h4>
+<p>Next we will remove some obvious wonky runner data, as determined by manual inspection.</p>
+<p>Sorting the DataFrame highlights erroneous split times. For example, look at the first column, containing the splits for Charles Corfield. The uncleaned split data suggests that Charles won the entire race, because his finish line split is the fastest. But looking more closely, it seems he dropped out of the race after the split labeled <code>56.5mi_Start to Hope Pass In</code>, and his bib triggered the sensor at the finish line when he came to watch the race winner, Ryan Smith, bring it home. Something similar seemed to happen with Vineer Bhansali. To see what I mean, compare their earlier, valid splits to Ryan’s:</p>
 <div class="cell" data-execution_count="8">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Optional: Print to a file so</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># I can inspect the whole thing for abnormalities (alt+z to disable wrap).</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostly looking for anomalous finish line splits when a runner DNFs and </span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># returns to Leadville.</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: Cannot view this in vscode if it goes over 10k characters wide.</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Sublime text can do it.</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># util.full_df_to_file(</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">#   util.df_td_fmt(df_split_times),</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">#   os.path.join(settings.RAW_RACE_DATA_DIR, 'df_all.txt')</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>util.df_td_fmt(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  df_split_times[[<span class="st">'Ryan Smith'</span>, <span class="st">'Charles Corfield'</span>, <span class="st">'Vineer Bhansali'</span>]]</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Ryan Smith</th>
+      <th>Charles Corfield</th>
+      <th>Vineer Bhansali</th>
+    </tr>
+    <tr>
+      <th>label</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>12.6mi_Start to May Queen</th>
+      <td>01:36:52</td>
+      <td>02:25:16</td>
+      <td>02:32:48</td>
+    </tr>
+    <tr>
+      <th>23.5mi_Start to Outward Bound OUT</th>
+      <td>03:10:01</td>
+      <td>04:37:43</td>
+      <td>05:15:49</td>
+    </tr>
+    <tr>
+      <th>29.3mi_Start to Half Pipe Out</th>
+      <td>03:56:17</td>
+      <td>05:44:52</td>
+      <td>06:38:03</td>
+    </tr>
+    <tr>
+      <th>37.9mi_Start to Twin Lakes Out</th>
+      <td>05:14:23</td>
+      <td>07:35:51</td>
+      <td>08:52:44</td>
+    </tr>
+    <tr>
+      <th>43.5mi_Start to Hope Pass Out</th>
+      <td>06:46:09</td>
+      <td>10:05:19</td>
+      <td>12:03:43</td>
+    </tr>
+    <tr>
+      <th>50mi_Start to Winfield</th>
+      <td>07:47:15</td>
+      <td>11:35:04</td>
+      <td>13:58:44</td>
+    </tr>
+    <tr>
+      <th>56.5mi_Start to Hope Pass In</th>
+      <td>09:22:44</td>
+      <td>13:56:55</td>
+      <td>&lt;NA&gt;</td>
+    </tr>
+    <tr>
+      <th>62.5mi_Start to Twin Lakes In</th>
+      <td>10:17:55</td>
+      <td>&lt;NA&gt;</td>
+      <td>&lt;NA&gt;</td>
+    </tr>
+    <tr>
+      <th>71.1mi_Start to Half Pipe In</th>
+      <td>11:49:43</td>
+      <td>&lt;NA&gt;</td>
+      <td>&lt;NA&gt;</td>
+    </tr>
+    <tr>
+      <th>76.9mi_Start to Outward Bound In</th>
+      <td>12:41:41</td>
+      <td>&lt;NA&gt;</td>
+      <td>&lt;NA&gt;</td>
+    </tr>
+    <tr>
+      <th>87.8mi_Start to May Queen In</th>
+      <td>14:39:35</td>
+      <td>&lt;NA&gt;</td>
+      <td>&lt;NA&gt;</td>
+    </tr>
+    <tr>
+      <th>Full Course</th>
+      <td>16:33:24</td>
+      <td>16:31:20</td>
+      <td>20:37:38</td>
+    </tr>
+  </tbody>
+</table>
 </div>
-<section id="remove-wonky-runner-data-as-determined-by-manual-inspection." class="level3">
-<h3 class="anchored" data-anchor-id="remove-wonky-runner-data-as-determined-by-manual-inspection.">Remove wonky runner data, as determined by manual inspection.</h3>
-<p>Viewing the data this way highlights erroneous split data. For example, look at the first column, containing the splits for Charles Corfield. The uncleaned split data suggests that Charles won the entire race, because his finish line split is the fastest. But looking more closely, it seems he dropped out of the race after the split labeled <code>56.5mi_Start to Hope Pass In</code>, and his bib triggered the sensor at the finish line when he came to watch the 2019 champion, Ryan Smith, bring it home. Something similar seemed to happen with Vineer Bhansali.</p>
+</div>
+</div>
+<p>To cleanse the data of these erroneous splits, we just need to set them to a null value.</p>
 <div class="cell" data-execution_count="9">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>util.df_td_fmt(</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  df_split_times[[<span class="st">'Charles Corfield'</span>, <span class="st">'Ryan Smith'</span>, <span class="st">'Vineer Bhansali'</span>]]</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df_split_times.loc[<span class="st">'Full Course'</span>, <span class="st">'Charles Corfield'</span>] <span class="op">=</span> pd.NA</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>df_split_times.loc[<span class="st">'Full Course'</span>, <span class="st">'Vineer Bhansali'</span>] <span class="op">=</span> pd.NA</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>util.df_td_fmt(</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  df_split_times[[<span class="st">'Charles Corfield'</span>, <span class="st">'Vineer Bhansali'</span>]]</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 
 <div>
@@ -12657,12 +12751,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <tr>
       <th></th>
       <th>Charles Corfield</th>
-      <th>Ryan Smith</th>
       <th>Vineer Bhansali</th>
     </tr>
     <tr>
       <th>label</th>
-      <th></th>
       <th></th>
       <th></th>
     </tr>
@@ -12671,181 +12763,61 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <tr>
       <th>12.6mi_Start to May Queen</th>
       <td>02:25:16</td>
-      <td>01:36:52</td>
       <td>02:32:48</td>
     </tr>
     <tr>
       <th>23.5mi_Start to Outward Bound OUT</th>
       <td>04:37:43</td>
-      <td>03:10:01</td>
       <td>05:15:49</td>
     </tr>
     <tr>
       <th>29.3mi_Start to Half Pipe Out</th>
       <td>05:44:52</td>
-      <td>03:56:17</td>
       <td>06:38:03</td>
     </tr>
     <tr>
       <th>37.9mi_Start to Twin Lakes Out</th>
       <td>07:35:51</td>
-      <td>05:14:23</td>
       <td>08:52:44</td>
     </tr>
     <tr>
       <th>43.5mi_Start to Hope Pass Out</th>
       <td>10:05:19</td>
-      <td>06:46:09</td>
       <td>12:03:43</td>
     </tr>
     <tr>
       <th>50mi_Start to Winfield</th>
       <td>11:35:04</td>
-      <td>07:47:15</td>
       <td>13:58:44</td>
     </tr>
     <tr>
       <th>56.5mi_Start to Hope Pass In</th>
       <td>13:56:55</td>
-      <td>09:22:44</td>
       <td>&lt;NA&gt;</td>
     </tr>
     <tr>
       <th>62.5mi_Start to Twin Lakes In</th>
       <td>&lt;NA&gt;</td>
-      <td>10:17:55</td>
       <td>&lt;NA&gt;</td>
     </tr>
     <tr>
       <th>71.1mi_Start to Half Pipe In</th>
       <td>&lt;NA&gt;</td>
-      <td>11:49:43</td>
       <td>&lt;NA&gt;</td>
     </tr>
     <tr>
       <th>76.9mi_Start to Outward Bound In</th>
       <td>&lt;NA&gt;</td>
-      <td>12:41:41</td>
       <td>&lt;NA&gt;</td>
     </tr>
     <tr>
       <th>87.8mi_Start to May Queen In</th>
       <td>&lt;NA&gt;</td>
-      <td>14:39:35</td>
-      <td>&lt;NA&gt;</td>
-    </tr>
-    <tr>
-      <th>Full Course</th>
-      <td>16:31:20</td>
-      <td>16:33:24</td>
-      <td>20:37:38</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-</div>
-<p>To cleanse the data of these erroneous splits, we just need to set them to a null value.</p>
-<div class="cell" data-execution_count="10">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df_split_times.loc[<span class="st">'Full Course'</span>, <span class="st">'Charles Corfield'</span>] <span class="op">=</span> pd.NA</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df_split_times.loc[<span class="st">'Full Course'</span>, <span class="st">'Vineer Bhansali'</span>] <span class="op">=</span> pd.NA</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>util.df_td_fmt(</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  df_split_times[[<span class="st">'Charles Corfield'</span>, <span class="st">'Ryan Smith'</span>, <span class="st">'Vineer Bhansali'</span>]]</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="10">
-
-<div>
-
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Charles Corfield</th>
-      <th>Ryan Smith</th>
-      <th>Vineer Bhansali</th>
-    </tr>
-    <tr>
-      <th>label</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>12.6mi_Start to May Queen</th>
-      <td>02:25:16</td>
-      <td>01:36:52</td>
-      <td>02:32:48</td>
-    </tr>
-    <tr>
-      <th>23.5mi_Start to Outward Bound OUT</th>
-      <td>04:37:43</td>
-      <td>03:10:01</td>
-      <td>05:15:49</td>
-    </tr>
-    <tr>
-      <th>29.3mi_Start to Half Pipe Out</th>
-      <td>05:44:52</td>
-      <td>03:56:17</td>
-      <td>06:38:03</td>
-    </tr>
-    <tr>
-      <th>37.9mi_Start to Twin Lakes Out</th>
-      <td>07:35:51</td>
-      <td>05:14:23</td>
-      <td>08:52:44</td>
-    </tr>
-    <tr>
-      <th>43.5mi_Start to Hope Pass Out</th>
-      <td>10:05:19</td>
-      <td>06:46:09</td>
-      <td>12:03:43</td>
-    </tr>
-    <tr>
-      <th>50mi_Start to Winfield</th>
-      <td>11:35:04</td>
-      <td>07:47:15</td>
-      <td>13:58:44</td>
-    </tr>
-    <tr>
-      <th>56.5mi_Start to Hope Pass In</th>
-      <td>13:56:55</td>
-      <td>09:22:44</td>
-      <td>&lt;NA&gt;</td>
-    </tr>
-    <tr>
-      <th>62.5mi_Start to Twin Lakes In</th>
-      <td>&lt;NA&gt;</td>
-      <td>10:17:55</td>
-      <td>&lt;NA&gt;</td>
-    </tr>
-    <tr>
-      <th>71.1mi_Start to Half Pipe In</th>
-      <td>&lt;NA&gt;</td>
-      <td>11:49:43</td>
-      <td>&lt;NA&gt;</td>
-    </tr>
-    <tr>
-      <th>76.9mi_Start to Outward Bound In</th>
-      <td>&lt;NA&gt;</td>
-      <td>12:41:41</td>
-      <td>&lt;NA&gt;</td>
-    </tr>
-    <tr>
-      <th>87.8mi_Start to May Queen In</th>
-      <td>&lt;NA&gt;</td>
-      <td>14:39:35</td>
       <td>&lt;NA&gt;</td>
     </tr>
     <tr>
       <th>Full Course</th>
       <td>&lt;NA&gt;</td>
-      <td>16:33:24</td>
       <td>&lt;NA&gt;</td>
     </tr>
   </tbody>
@@ -12854,30 +12826,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Another type of error can happen when a split is triggered erroneously early, for whatever reason. This type of erroneous data doesn’t necessarily jump out upon visual inspection. One way to check for it is to see if any athletes data includes a negative point-to-point time.</p>
-<div class="cell" data-execution_count="11">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># df_split_times.diff().iloc[1:].apply(lambda col: (col.dt.total_seconds() &lt; 0).any())</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># df_split_times.diff().iloc[1:].apply(lambda col: col[~col.isnull()].dt.total_seconds() &lt; 0).all()</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># df_split_times.diff().iloc[1:].apply(lambda col: (col.dt.total_seconds() &gt; 0))</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># df_split_times.diff().iloc[1:].apply(lambda col: (col.dt.total_seconds() &gt; 0).all())</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># df_split_times.apply(lambda col: col.is_monotonic_increasing)</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># series_athlete_has_negative_timedelta = df_split_times.diff().apply(</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">#   lambda col: (col.dt.total_seconds() &lt; 0).any())</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>series_athlete_has_negative_timedelta <span class="op">=</span> df_split_times.<span class="bu">apply</span>(</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">lambda</span> col: (col[col.notnull()].dt.total_seconds().diff() <span class="op">&lt;</span> <span class="dv">0</span>).<span class="bu">any</span>())</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co"># series_athlete_has_negative_timedelta = df_split_times.apply(</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co">#   lambda col: col.notnull()</span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>util.df_td_fmt(</span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  df_split_times.loc[:, series_athlete_has_negative_timedelta]</span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="11">
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>util.df_td_fmt(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  util.get_df_negative_timedelta(df_split_times)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
 
 <div>
 
@@ -12963,15 +12916,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>It’s not immediately clear what is going on with the split data for either of these athletes.</p>
 <p>In Willie’s case, the erroneously negative elapsed time comes between the splits at 76.9 miles and 87.8 miles. But even if we discarded the split data at 87.8 miles as an obvious misfire, no one could cover the distance from 76.9 miles to the finish in such a short time. But is the error at 76.9 miles or the finish line? Both?</p>
 <p>It’s impossible to tell which split data is valid or invalid without more context. Let’s look at athletes with similar finish times to each athlete with bad data.</p>
-<div class="cell" data-execution_count="12">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ix <span class="op">=</span> df_split_times.columns.get_loc(<span class="st">'Willie Stewart'</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>util.df_td_fmt(</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  df_split_times.iloc[:, ix<span class="op">-</span><span class="dv">5</span>:ix<span class="op">+</span><span class="dv">5</span>]</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="12">
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>util.df_td_fmt(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  util.get_column_context(df_split_times, <span class="st">'Willie Stewart'</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
 
 <div>
 
@@ -13166,33 +13115,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<p>Wow now I have no idea what data is valid.</p>
+<p>With the added context of surrounding runners, it becomes clear that there are more data issues. It’s kind of hard to definitively judge which splits are valid and which are bogus.</p>
 <ul>
 <li>It seems likely that Willie Stewart DNFed at 76.9. I just doubt anyone could cover 71.1 -&gt; 100 in 3ish hours, so it seems very unlikely that the split at 76.9 is a misfire.</li>
 <li>Chavet Breslin probably DNFed at 76.9 and recorded an erroneous finish.</li>
 <li>Harry Harcrow and Jared Conlin seem to have DNFed at 71.1 but recorded a finish line split near each other.</li>
 <li>Tim Finocchio seemed sketchy at first with how much ground he made up in the later splits, but I cannot say anything without busting out the statistics.</li>
 </ul>
-<p>Let’s cleanse the more likely errors.</p>
-<div class="cell" data-execution_count="13">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df_split_times.loc[<span class="st">'87.8mi_Start to May Queen In'</span>: <span class="st">'Full Course'</span>, <span class="st">'Willie Stewart'</span>] <span class="op">=</span> pd.NA</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>df_split_times.loc[<span class="st">'Full Course'</span>, <span class="st">'Chavet Breslin'</span>] <span class="op">=</span> pd.NA</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>df_split_times.loc[<span class="st">'Full Course'</span>, <span class="st">'Harry Harcrow'</span>] <span class="op">=</span> pd.NA</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>df_split_times.loc[<span class="st">'Full Course'</span>, <span class="st">'Jared Conlin'</span>] <span class="op">=</span> pd.NA</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<p>Let’s cleanse the more likely errors:</p>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df_split_times.loc[<span class="st">'87.8mi_Start to May Queen In'</span>: <span class="st">'Full Course'</span>, <span class="st">'Willie Stewart'</span>] <span class="op">=</span> pd.NA</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>df_split_times.loc[<span class="st">'Full Course'</span>, <span class="st">'Chavet Breslin'</span>] <span class="op">=</span> pd.NA</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>df_split_times.loc[<span class="st">'Full Course'</span>, <span class="st">'Harry Harcrow'</span>] <span class="op">=</span> pd.NA</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>df_split_times.loc[<span class="st">'Full Course'</span>, <span class="st">'Jared Conlin'</span>] <span class="op">=</span> pd.NA</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Let’s look at the context around Max’s finish split.</p>
-<div class="cell" data-execution_count="14">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>ix <span class="op">=</span> df_split_times.columns.get_loc(<span class="st">'Max Fulton'</span>)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>util.df_td_fmt(</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  df_split_times.iloc[:, ix<span class="op">-</span><span class="dv">5</span>:ix<span class="op">+</span><span class="dv">5</span>]</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="14">
+<p>Next, let’s look at the runners coming in around Max’s recorded finish time:</p>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>util.df_td_fmt(</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  util.get_column_context(df_split_times, <span class="st">'Max Fulton'</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
 
 <div>
 
@@ -13388,57 +13330,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Immediately, it looks like the split at 43.5 misfired. I think his chip didn’t fire on the way out, but it did fire on the way in. Let’s swap those values.</p>
-<div class="cell" data-execution_count="15">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df_split_times.loc[<span class="st">'56.5mi_Start to Hope Pass In'</span>, <span class="st">'Max Fulton'</span>] <span class="op">=</span> df_split_times.loc[<span class="st">'43.5mi_Start to Hope Pass Out'</span>, <span class="st">'Max Fulton'</span>]</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>df_split_times.loc[<span class="st">'43.5mi_Start to Hope Pass Out'</span>, <span class="st">'Max Fulton'</span>] <span class="op">=</span> pd.NA</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df_split_times.loc[<span class="st">'56.5mi_Start to Hope Pass In'</span>, <span class="st">'Max Fulton'</span>] <span class="op">=</span> df_split_times.loc[</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'43.5mi_Start to Hope Pass Out'</span>, <span class="st">'Max Fulton'</span>]</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>df_split_times.loc[<span class="st">'43.5mi_Start to Hope Pass Out'</span>, <span class="st">'Max Fulton'</span>] <span class="op">=</span> pd.NA</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="16">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Use statistical methods or reasonable assumptions to </span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># programmatically flag sketchy split times. Single splits that are</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># anomalously fast are invisible to me when I'm visually checking the</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co"># output.</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Move the functionality below somewhere else - it represents insights</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co">#       that can only be gained after looking at the results of the</span></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co">#       script so far.</span></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Make this programmatic if it needs to be done more than once.</span></span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> RACE_YEAR <span class="op">==</span> <span class="dv">2022</span>:</span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Erroneous finish line split after a dnf</span></span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  df_split_times.loc[<span class="st">'Full Course'</span>, <span class="st">'Mickey Davis'</span>] <span class="op">=</span> pd.NA</span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  df_split_times.loc[<span class="st">'76.9mi_Start to Outward Bound In'</span>, <span class="st">'Timothy Weng'</span>] <span class="op">=</span> pd.NA</span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># He would have had to run an unreasonably fast time to get to the next split. </span></span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>  df_split_times.loc[<span class="st">'29.3mi_Start to Half Pipe Out'</span>, <span class="st">'Adrian Macdonald'</span>] <span class="op">=</span> pd.NA</span>
-<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># chip reported a negative time from last split</span></span>
-<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>  df_split_times.loc[<span class="st">'43.5mi_Start to Hope Pass Out'</span>, <span class="st">'Kris Rugloski'</span>] <span class="op">=</span> pd.NA</span>
-<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 05:10:20 split would put him in first. Hmm.</span></span>
-<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Next two splits are pretty fast for his eventual finish time too.</span></span>
-<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Could have been a wonky chip or an aggressive strategy, idk.</span></span>
-<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># df_split_times.loc['37.9mi_Start to Twin Lakes Out', 'Michael Nanaszko'] = pd.NA</span></span>
-<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> RACE_YEAR <span class="op">==</span> <span class="dv">2021</span>:</span>
-<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># chip reported a negative time from last split</span></span>
-<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>  df_split_times.loc[<span class="st">'37.9mi_Start to Twin Lakes Out'</span>, <span class="st">'Matthew DuBois'</span>] <span class="op">=</span> pd.NA</span>
-<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># </span><span class="al">TODO</span><span class="co">: finish checking.</span></span>
-<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>df_split_times <span class="op">=</span> cleaners.sort_df_split_data(df_split_times, df_split_info)</span>
-<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a>util.display_full_df(util.df_td_fmt(df_split_times))</span>
-<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a><span class="co"># series_athlete_has_negative_timedelta = df_split_times.apply(</span></span>
-<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a><span class="co">#   lambda col: (col[col.notnull()].dt.total_seconds().diff() &lt; 0).any())</span></span>
-<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a><span class="co"># df_split_times.loc[:, series_athlete_has_negative_timedelta]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<p>Re-sort the splits DataFrame now that some cellular data has changed.</p>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df_split_times <span class="op">=</span> cleaners.sort_df_split_data(df_split_times, df_split_info)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>util.display_full_df(util.df_td_fmt(df_split_times))</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Debug</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co"># util.df_td_fmt(</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">#   util.get_df_negative_timedelta(df_split_info)</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 <div>
@@ -25128,17 +25034,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
+<p>In the future, I’d like to use statistical methods and reasonable assumptions to programmatically flag sketchy split times. Single splits that are anomalously fast are invisible to me when I’m visually checking the output.</p>
+<p>Creating and reviewing plots of the data can help spot obvious outliers, but still, sketchy splits may or may not stand out in a single scatterplot.</p>
+<p>Implementing a more rigorous anomaly detection protocol sounds fun.</p>
 </section>
-<section id="optional-save-inferences-for-future-use" class="level3">
-<h3 class="anchored" data-anchor-id="optional-save-inferences-for-future-use">(Optional) save inferences for future use</h3>
-<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Implement?</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># util.save_athlete_split_times(df_all_athlete_split_times, clean=True)</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>dir_out <span class="op">=</span> settings.CLEAN_RACE_DATA_DIR</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> os.path.exists(settings.CLEAN_RACE_DATA_DIR):</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  os.makedirs(settings.CLEAN_RACE_DATA_DIR)</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>io.df_td_to_csv(df_split_times, </span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  os.path.join(settings.CLEAN_RACE_DATA_DIR, settings.SPLIT_SECS_FNAME))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="save-the-cleaned-data" class="level3">
+<h3 class="anchored" data-anchor-id="save-the-cleaned-data">Save the cleaned data</h3>
+<p>Write the processed, cleaned athlete split DataFrame to a (<code>pandas</code>-preferred) CSV file for future analysis.</p>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>io.save_df_split_times_clean(df_split_times, RACE_YEAR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
 </section>
