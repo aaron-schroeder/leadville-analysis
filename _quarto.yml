@@ -48,7 +48,7 @@ format:
     # theme: minty
     # theme: litera
     # theme: cyborg
-    # css: styles.css
+    css: styles.css
     toc: true
     code-fold: false
     code-link: true
