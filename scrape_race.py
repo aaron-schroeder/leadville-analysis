@@ -1,37 +1,52 @@
-import os
+"""
+The idea is basically to replicate functionality in the scrapy binary
+(./env/bin/scrapy).
 
-from scrapy.crawler import CrawlerProcess
-from scrapy_athlinks import RaceSpider
+https://github.com/scrapy/scrapy/blob/2.6.2/scrapy/cmdline.py#L118
+"""
+import getopt
+import sys
 
-from processing import io
+
+from processing.scrapers import LeadvilleScraper
 
 
-RACE_YEAR = 2019
+def execute(argv=None):
+  if argv is None:
+    argv = sys.argv
 
-# DIR_OUT = settings.RAW_RACE_DATA_DIR
-DIR_OUT = io.get_raw_race_data_dir(RACE_YEAR)
+  arg_help = (
+    f'Usage\n'
+    f'=====\n'
+    f'  {argv[0]} -y <year>\n\n'
+    f'Run the spider for the Leadville results in the given year\n\n'
+    f'Optional Arguments\n'
+    f'==================\n'
+    f'  -h, --help            show this help message and exit\n'
+  )
+  
+  try:
+    opts, args = getopt.getopt(
+      argv[1:],
+      'hy:',
+      ['help', 'year=']
+    )
+    print((opts, args))
+  except:
+    print(arg_help)
+    sys.exit(2)
 
-if not os.path.exists(DIR_OUT):
-  os.makedirs(DIR_OUT)
+  for opt, arg in opts:
+    if opt in ('-h', '--help'):
+      print(arg_help)
+      sys.exit(0)  # because it worked as expected
+    elif opt in ('-y', '--year'):
+      LeadvilleScraper(int(arg)).run_spider()
+    
 
-fname_athletes = os.path.join(DIR_OUT, 'athletes.json')
-fname_meta = os.path.join(DIR_OUT, 'metadata.json')
-settings = {}
-settings['FEEDS'] = {
-  fname_athletes: {
-    'format':'json',
-    'overwrite': True,
-    'item_classes': ['scrapy_athlinks.items.AthleteItem'],
-  },
-  fname_meta: {
-    'format':'json',
-    'overwrite': True,
-    'item_classes': ['scrapy_athlinks.items.RaceItem'],
-    # TODO: How to make it a single json object though?
-    # (Rather than a single-item list)
-  },
-}
+if __name__ == "__main__":
+  sys.exit(execute())
 
-process = CrawlerProcess(settings=settings)
-process.crawl(RaceSpider, io.get_race_url(RACE_YEAR))
-process.start()
+  # Hardcoded alternative
+  # scraper = LeadvilleScraper(2019)
+  # scraper.run_spider_pandas()

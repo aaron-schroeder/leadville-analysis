@@ -2,25 +2,57 @@ project:
   type: website
   render:
     - index.qmd
+    - scraping.qmd
     - 2019.ipynb
+    - 2021.ipynb
+    - 2022.ipynb
   output-dir: html
 
 website:
   title: 'Leadville Results Analysis'
   navbar:
     background: primary
-    left:
-      - href: index.qmd
-        text: Home
-      - 2019.ipynb
-
+    # left:
+    #   - href: index.qmd
+    #     text: Home
+    #   - scraping.qmd
+    #   - 2019.ipynb
+    #   - 2021.ipynb
+    right:
+      - icon: github
+        href: https://github.com/aaron-schroeder/leadville-analysis
+        aria-label: Repo on GitHub
+  sidebar:
+    # style: 'docked'
+    style: 'floating'
+    collapse-level: 1
+    contents:
+      # - scraping.qmd
+      - section: 'Scraping'
+        contents:
+          - scraping.qmd
+      - section: 'Data Cleansing'
+        contents:
+          - 2019.ipynb
+          - 2021.ipynb
+          - 2022.ipynb
+      # - section: Analysis
+      #   contents:
+      #     - statistics.ipynb
+      #     - figures.ipynb
 format:
   html:
     # theme: solarized
-    theme: pulse
-    # theme: journal
+    # theme: pulse
+    theme: journal
     # theme: minty
     # theme: litera
     # theme: cyborg
     # css: styles.css
     toc: true
+    code-fold: false
+    code-link: true
+execute:
+  enabled: true
+  # freeze: true
+jupyter: python3

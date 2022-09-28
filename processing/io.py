@@ -1,11 +1,10 @@
-import glob
 import json
 import os
 
 import pandas as pd
 
 from processing import cleaners
-from processing.util import td_to_secs
+from processing import util
 
 
 DATA_DIR = os.path.join(os.path.dirname(os.path.realpath(__file__)), os.pardir, 'data')
@@ -72,6 +71,15 @@ def load_df_split_info_raw(race_year):
   # return pd.DataFrame.from_records(raw_json['split_info'])
 
 
+def save_df_split_info_clean(df_split_info, race_year):
+  dir_out = get_clean_race_data_dir(race_year)
+  if not os.path.exists(dir_out):
+    os.makedirs(dir_out)
+  df_split_info.to_csv(os.path.join(dir_out, SPLIT_INFO_FNAME),
+    columns=['distance_mi', 'cutoff_hr'],
+    index=True)
+
+
 def load_df_split_info_clean(race_year):
   data_dir = get_clean_race_data_dir(race_year)
   return pd.read_csv(os.path.join(data_dir, SPLIT_INFO_FNAME), index_col=INDEX_NAME)
@@ -129,8 +137,6 @@ def load_df_split_ms_raw(data_dir):
   return load_df_split_ms_json_simple_raw(data_dir)
 
 
-# def load_athlete_split_times(clean=True, include_start=False):
-# def load_df_split_times_raw(data_dir):
 def load_df_split_times_raw(race_year):
   """
   For now, just assume all splits are chip time, so everyone was on
@@ -169,14 +175,23 @@ def load_df_split_times_raw(race_year):
   return df_athlete_split_times
 
 
-def load_df_split_secs_clean(data_dir):
+def save_df_split_times_clean(df_split_times, race_year):
+  dir_out = get_clean_race_data_dir(race_year)
+  if not os.path.exists(dir_out):
+    os.makedirs(dir_out)
+  df_td_to_csv(df_split_times, 
+    os.path.join(dir_out, SPLIT_SECS_FNAME))
+
+
+def load_df_split_secs_clean(race_year):
+  data_dir = get_clean_race_data_dir(race_year)
   return pd.read_csv(
     os.path.join(data_dir, SPLIT_SECS_FNAME),
     index_col=INDEX_NAME
   ).astype('Int64')
 
 
-def load_df_split_times_clean(data_dir):
+def load_df_split_times_clean(race_year):
   """
   For now, just assume all splits are chip time, so everyone was on
   the starting line at 0:00:00 on their chip.
@@ -184,6 +199,8 @@ def load_df_split_times_clean(data_dir):
   to find the actual chip start time (eg. 4:00:45).
   """
   # df_athlete_split_secs = load_athlete_split_secs(clean=clean)
+
+  data_dir = get_clean_race_data_dir(race_year)
 
   df_athlete_split_times = load_df_split_secs_clean(data_dir
     ).apply(pd.to_timedelta, axis=0, unit='s')
@@ -213,7 +230,7 @@ def load_df_split_times_clean(data_dir):
   
 
 def df_td_to_csv(df, fname):
-  df.apply(td_to_secs).to_csv(fname)
+  df.apply(util.td_to_secs).to_csv(fname)
 
 
 def load_df_td_from_csv(fname):

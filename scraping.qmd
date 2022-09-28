@@ -1,0 +1,69 @@
+---
+title: 'Running the spider'
+format:
+  html:
+    code-fold: false
+---
+
+This package provides a helper class that handles the `RaceSpider`,
+from settings to running. It takes the desired year as an argument.
+
+```{.python filename="processing/scrapers.py"}
+import os
+
+from scrapy.crawler import CrawlerProcess
+from scrapy_athlinks import RaceSpider
+
+from processing import io
+
+
+class LeadvilleScraper:
+  def __init__(self, race_year):
+    self.spider = RaceSpider
+    self.race_year = race_year
+    self.dir_out = io.get_raw_race_data_dir(race_year)
+
+  def _get_uri(self, fname):
+    return os.path.join(self.dir_out, fname)
+
+  def run_spider(self, settings={}):
+    if not os.path.exists(self.dir_out):
+      os.makedirs(self.dir_out)
+    process = CrawlerProcess(settings=settings)
+    process.crawl(self.spider, io.get_race_url(self.race_year))
+    process.start()
+
+  def run_spider_pandas(self):
+    """Saves items in the most pandas-available file formats."""
+    self.run_spider(settings={
+      'FEEDS': {
+        self._get_uri('athletes.json'): {
+          'format':'json',
+          'overwrite': True,
+          'item_classes': ['scrapy_athlinks.items.AthleteItem'],
+        },
+        self._get_uri('metadata.json'): {
+          'format':'json',
+          'overwrite': True,
+          'item_classes': ['scrapy_athlinks.items.RaceItem'],
+        },
+      }
+    })
+
+  # ...
+```
+
+When one of its `run_spider` methods is invoked, `LeadvilleScraper` 
+locates or creates the output directory,
+scrapes the desired year's race results, 
+and saves them as files formatted according to the method-specific settings.
+
+```{python filename="scrape_race.py"}
+#| eval: false
+
+from processing.scrapers import LeadvilleScraper
+
+
+scraper = LeadvilleScraper(2019)
+scraper.run_spider_pandas()
+```

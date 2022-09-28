@@ -81,3 +81,14 @@ def display_full_df(df):
   pd.set_option('display.width', 1000000000000)
   display(df)
   pd.reset_option('display.max_columns', 'display.width')
+
+
+def get_column_context(df, col_label):
+  ix = df.columns.get_loc(col_label)
+  return df.iloc[:, ix-5:ix+5]
+
+
+def get_df_negative_timedelta(df_split_times):
+  series_athlete_has_negative_timedelta = df_split_times.apply(
+    lambda col: (col[col.notnull()].dt.total_seconds().diff() < 0).any())
+  return df_split_times.loc[:, series_athlete_has_negative_timedelta]

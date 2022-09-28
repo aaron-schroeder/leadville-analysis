@@ -26,8 +26,11 @@ jobs:
       - name: Store race urls
         run: python store_race_urls.py
 
-      - name: Run the spider
-        run: python scrape_race.py
+      - name: Run the spiders
+        run: |
+          python scrape_race.py -y 2019
+          python scrape_race.py -y 2021
+          python scrape_race.py -y 2022
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2

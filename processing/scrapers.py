@@ -21,84 +21,76 @@ import os
 from scrapy.crawler import CrawlerProcess
 from scrapy_athlinks import RaceSpider
 
-import io
+from processing import io
 
 
-def make_dir_out(race_year):
-  dir_out = io.get_raw_race_data_dir(race_year)
-  if not os.path.exists(dir_out):
-    os.makedirs(dir_out)
-  return dir_out
+class LeadvilleScraper:
+  def __init__(self, race_year):
+    self.spider = RaceSpider
+    self.race_year = race_year
+    self.dir_out = io.get_raw_race_data_dir(race_year)
 
+  def _get_uri(self, fname):
+    return os.path.join(self.dir_out, fname)
 
-def run_scraper(settings, race_year):
-  race_url = io.get_race_url(race_year)
-  process = CrawlerProcess(settings=settings)
-  process.crawl(RaceSpider, race_url)
-  process.start()
+  def run_spider(self, settings={}):
+    if not os.path.exists(self.dir_out):
+      os.makedirs(self.dir_out)
+    process = CrawlerProcess(settings=settings)
+    process.crawl(self.spider, io.get_race_url(self.race_year))
+    process.start()
 
+  def run_spider_pandas(self):
+    """Saves items in the most pandas-available file formats."""
+    self.run_spider(settings={
+      # https://docs.scrapy.org/en/latest/topics/feed-exports.html#feeds
+      'FEEDS': {
+        # https://docs.scrapy.org/en/latest/topics/feed-exports.html#storage-uri-parameters
+        self._get_uri('athletes.json'): {
+          'format':'json',
+          # default False for local storage
+          'overwrite': True,
 
-def scrape_for_pandas(race_year):
-  """Saves items in the most pandas-available file formats."""
-  dir_out = make_dir_out(race_year)
-  settings = {
-    # https://docs.scrapy.org/en/latest/topics/feed-exports.html#feeds
-    'FEEDS': {
-      # https://docs.scrapy.org/en/latest/topics/feed-exports.html#storage-uri-parameters
-      os.path.join(dir_out, 'athletes.json'): {
-        'format':'json',
-        # default False for local storage
-        'overwrite': True,
-
-        'item_classes': ['scrapy_athlinks.items.AthleteItem'],
-      },
-      os.path.join(dir_out, 'metadata.json'): {
-        'format':'json',
-        'overwrite': True,
-        'item_classes': ['scrapy_athlinks.items.RaceItem'],
-        # TODO: How to make it a single json object though?
-        # (Rather than a single-item list)
-      },
-    }
-  }
-  run_scraper(settings, race_year)
-
-
-def scrape_athlete_results_jl(race_year):
-  """Scrape a race's results and output as a jl file"""
-  dir_out = make_dir_out(race_year)
-  settings = {
-    'FEEDS': {
-      # os.path.join(dir_out, '%(event_id)s_athletes.jl')
-      os.path.join(dir_out, 'athletes.jl'): {
-        'format':'jsonlines',
-        'overwrite': True,
-        'item_classes': ['scraper.items.AthleteItem'],
+          'item_classes': ['scrapy_athlinks.items.AthleteItem'],
+        },
+        self._get_uri('metadata.json'): {
+          'format':'json',
+          'overwrite': True,
+          'item_classes': ['scrapy_athlinks.items.RaceItem'],
+          # TODO: How to make it a single json object though?
+          # (Rather than a single-item list)
+        },
       }
-    }
-  }
-  run_scraper(settings, race_year)
+    })
 
+  def run_spider_athlete_results_jl(self):
+    """Scrape a race's results and output athlete items as a jl file"""
+    self.run_spider(settings={
+      'FEEDS': {
+        # self._get_uri('%(event_id)s_athletes.jl'): {
+        self._get_uri('athletes.jl'): {
+          'format':'jsonlines',
+          'overwrite': True,
+          'item_classes': ['scraper.items.AthleteItem'],
+        }
+      }
+    })
 
-def scrape_athlete_results_json(race_year):
-  """Scrape a race's results and output as a json file"""
-  dir_out = make_dir_out(race_year)
-  settings = {
-    'ITEM_PIPELINES': {
-      'scraper.pipelines.SingleJsonWriterPipeline': 300,
-    },
-    'PATH_OUT': os.path.join(dir_out, 'race.json'),
-  }
-  run_scraper(settings, race_year)
+  def run_spider_athlete_results_json(self):
+    """Scrape a race's results and output as a json file"""
+    self.run_spider(settings={
+      'ITEM_PIPELINES': {
+        'scrapy_athlinks.pipelines.SingleJsonWriterPipeline': 300,
+      },
+      'PATH_OUT': self._get_uri('race.json'),
+    })
 
-
-def scrape_athlete_results_json_simple(race_year):
-  settings = {}
-  dir_out = make_dir_out(race_year)
-  settings['FEEDS'] = {
-    os.path.join(dir_out, 'simple.json'): { 
-      'format':'json',
-      'overwrite': True,
-    },
-  }
-  run_scraper(settings, race_year)
+  def run_spider_athlete_results_json_simple(self):
+    self.run_spider(settings={
+      'FEEDS': {
+        self._get_uri('simple.json'): { 
+          'format':'json',
+          'overwrite': True,
+        },
+      }
+    })
